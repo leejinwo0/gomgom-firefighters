@@ -1,0 +1,53 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.label {
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+.control {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 16px; /* 16px 미만이면 iOS에서 입력 시 화면이 확대됨 */
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.control::placeholder {
+  color: #a3aab5;
+}
+.control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+select.control {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-ink-soft) 50%),
+    linear-gradient(135deg, var(--color-ink-soft) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+.invalid {
+  border-color: #e5484d;
+}
+.hint,
+.error {
+  margin: 0;
+  font-size: var(--fs-caption);
+}
+.hint {
+  color: var(--color-ink-soft);
+}
+.error {
+  color: #e5484d;
+  font-weight: 600;
+}

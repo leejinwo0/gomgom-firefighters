@@ -1,7 +1,8 @@
+import { getDisplayName } from "../../lib/auth";
 import styles from "./ProfileChip.module.css";
 
 export default function ProfileChip({
-  name = "우리집 햄찌",
+  name = getDisplayName(),
   mode = "초보 소방관 모드",
   avatar = "/images/시나리오/객체/프로필사진.png",
   compact = false,
