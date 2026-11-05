@@ -1,0 +1,66 @@
+/* ───────── 디자인 토큰 ─────────
+   화면 기준: 모바일(~767px) / 태블릿(768~1023px) / 데스크톱(1024px~)
+   고정 1194×834 캔버스 대신 화면 크기에 맞춰 늘고 줄어듭니다. */
+:root {
+  --color-primary: #ff643e;
+  --color-primary-dark: #e9532e;
+  --color-ink: #363d47;
+  --color-ink-soft: #6b7684;
+  --color-surface: #fefefe;
+  --color-bg: #f6f7f9;
+  --color-line: #d6dbe2;
+  --color-dim: rgba(0, 0, 0, 0.4);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 4px 16px rgba(54, 61, 71, 0.12);
+
+  /* 화면 폭에 따라 부드럽게 바뀌는 간격·글자 크기 */
+  --space-page: clamp(16px, 3.4vw, 40px);
+  --fs-caption: clamp(12px, 1.1vw, 14px);
+  --fs-body: clamp(14px, 1.4vw, 18px);
+  --fs-title: clamp(20px, 2.2vw, 28px);
+  --fs-hero: clamp(26px, 3.4vw, 40px);
+
+  /* 손가락으로 누르기 충분한 최소 버튼 높이 */
+  --tap: 48px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: var(--color-ink);
+  background: var(--color-bg);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* 주소창 때문에 높이가 흔들리지 않도록 dvh 사용 */
+.screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+}

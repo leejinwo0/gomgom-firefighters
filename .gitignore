@@ -1,0 +1,20 @@
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 환경변수
+.env
+.env.local
+
+# 업로드·파이프라인 결과물 (저장소에 올리지 않음)
+backend/uploads/
+backend/**/yolo_output/
+
+# OS·에디터
+.DS_Store
+.vscode/
