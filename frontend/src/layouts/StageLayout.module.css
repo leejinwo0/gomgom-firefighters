@@ -1,0 +1,181 @@
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+}
+.background > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 밝은 배경에서도 흰 제목이 읽히도록 위쪽만 살짝 어둡게 */
+.scrim {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 180px;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), transparent);
+  pointer-events: none;
+}
+
+/* UI 레이어: 빈 곳은 클릭이 배경(VR)으로 통과 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-page);
+  padding-top: max(var(--space-page), env(safe-area-inset-top));
+  pointer-events: none;
+}
+.overlay > * > * {
+  pointer-events: auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.heading {
+  max-width: 420px;
+}
+.title {
+  margin: 0 0 10px;
+  font-size: var(--fs-title);
+  line-height: 1.35;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+.step {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: 500;
+  color: var(--color-line);
+}
+.stepBadge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+}
+.profile {
+  flex-shrink: 0;
+  color: var(--color-ink);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+/* 소방곰은 화면 왼쪽 아래 모서리에 붙임 */
+.guide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 calc(-1 * var(--space-page)) calc(-1 * var(--space-page));
+  pointer-events: none;
+}
+.guide > * {
+  pointer-events: auto;
+}
+.bubble {
+  margin-left: var(--space-page);
+  margin-bottom: 4px;
+}
+.character {
+  width: clamp(220px, 30vw, 404px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* 태블릿: 소방곰을 조금 작게 */
+@media (max-width: 1023px) {
+  .character {
+    width: clamp(180px, 26vw, 280px);
+  }
+}
+
+/* 스마트폰 세로: 아래쪽을 하단 시트로 */
+@media (max-width: 767px) {
+  .scrim {
+    height: 140px;
+  }
+  .top {
+    align-items: center;
+  }
+  .title {
+    margin-bottom: 6px;
+  }
+
+  .bottom {
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin: 0 calc(-1 * var(--space-page)) calc(-1 * var(--space-page));
+    padding: 20px var(--space-page);
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.18);
+    pointer-events: auto;
+  }
+  .guide {
+    margin: 0;
+    padding-right: 88px; /* 소방곰 자리 */
+  }
+  /* 시트 안에서는 말풍선 모양 대신 본문 텍스트로 */
+  .bubble {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    box-shadow: none;
+    background: transparent;
+    font-size: 18px;
+  }
+  .bubble::after {
+    display: none;
+  }
+  /* 소방곰은 시트 오른쪽 위에 걸쳐 작게 */
+  .character {
+    position: absolute;
+    right: 12px;
+    bottom: calc(100% - 56px);
+    width: 104px;
+  }
+  .actions {
+    flex-wrap: nowrap;
+  }
+  .actions > * {
+    flex: 1;
+    min-width: 0;
+  }
+}

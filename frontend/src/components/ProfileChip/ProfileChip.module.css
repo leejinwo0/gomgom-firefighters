@@ -1,0 +1,59 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px 10px 10px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  line-height: 1.4;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.name {
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 600;
+}
+.mode {
+  font-size: var(--fs-caption);
+  color: #8d94a0;
+  font-weight: 500;
+}
+
+.compact {
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+}
+.compact .avatar {
+  width: 32px;
+  height: 32px;
+}
+.compact .name {
+  font-size: 13px;
+}
+.compact .mode {
+  font-size: 11px;
+}
+
+@media (max-width: 767px) {
+  .collapsible {
+    padding: 4px;
+    border-radius: 50%;
+  }
+  .collapsible .avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .collapsible .text {
+    display: none;
+  }
+}

@@ -1,11 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ComingSoon from "../pages/ComingSoon";
+import UiPreview from "../pages/dev/UiPreview";
+import StagePreview from "../pages/dev/StagePreview";
+import SplitPreview from "../pages/dev/SplitPreview";
 
 // 페이지는 단계별로 새 반응형 구조로 옮기면서 여기에 추가합니다.
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {import.meta.env.DEV && (
+          <>
+            <Route path="/ui" element={<UiPreview />} />
+            <Route path="/ui/stage" element={<StagePreview />} />
+            <Route path="/ui/split" element={<SplitPreview />} />
+          </>
+        )}
         <Route path="*" element={<ComingSoon />} />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,30 @@
+.bubble {
+  position: relative;
+  max-width: min(420px, 100%);
+  padding: clamp(14px, 1.8vw, 20px) clamp(18px, 2.4vw, 30px);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+  font-size: clamp(16px, 1.8vw, 24px);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  border: 14px solid transparent;
+  border-top-color: var(--color-surface);
+  border-bottom: 0;
+}
+.tail-bottom-left::after {
+  left: 36px;
+}
+.tail-bottom::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tail-none::after {
+  display: none;
+}
