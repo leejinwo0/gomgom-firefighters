@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ComingSoon from "../pages/ComingSoon";
+import ScenarioRoute from "../features/scenario/ScenarioPage";
 import UiPreview from "../pages/dev/UiPreview";
 import StagePreview from "../pages/dev/StagePreview";
 import SplitPreview from "../pages/dev/SplitPreview";
@@ -10,6 +11,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/training/:scenarioId/:stepId?" element={<ScenarioRoute />} />
+
         {import.meta.env.DEV && (
           <>
             <Route path="/ui" element={<UiPreview />} />

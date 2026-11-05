@@ -8,6 +8,7 @@ import styles from "./StageLayout.module.css";
  * 데스크톱·태블릿: 왼쪽 위 제목 / 오른쪽 위 프로필 / 왼쪽 아래 소방곰+말풍선 / 오른쪽 아래 버튼
  * 스마트폰 세로:   위쪽 제목+작은 프로필 / 아래쪽 하단 시트(말풍선 내용+버튼), 소방곰은 시트 위에 작게
  *
+ * center: 가운데 영역(선택지 카드, 신고 카드 등)
  * 배경은 UI 아래에서 드래그·터치를 그대로 받을 수 있게 둡니다.
  */
 export default function StageLayout({
@@ -19,6 +20,7 @@ export default function StageLayout({
   character,
   message,
   actions,
+  center,
   children,
 }) {
   const stageRef = useRef(null);
@@ -54,6 +56,8 @@ export default function StageLayout({
           </div>
           {profile && <div className={styles.profile}>{profile}</div>}
         </header>
+
+        {center && <div className={styles.center}>{center}</div>}
 
         <div ref={bottomRef} className={styles.bottom}>
           <div className={styles.guide}>

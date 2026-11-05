@@ -31,9 +31,15 @@
 .overlay {
   position: absolute;
   inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  /* 데스크톱: 위(제목·프로필) / 왼쪽 아래(소방곰) / 가운데(콘텐츠) / 오른쪽 아래(버튼) */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "top top"
+    "guide center"
+    "guide actions";
+  column-gap: 24px;
   padding: var(--space-page);
   padding-top: max(var(--space-page), env(safe-area-inset-top));
   pointer-events: none;
@@ -43,6 +49,7 @@
 }
 
 .top {
+  grid-area: top;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -79,15 +86,31 @@
   color: var(--color-ink);
 }
 
+/* 데스크톱에서는 하단 묶음을 풀어 소방곰·버튼을 각각 격자에 배치 */
 .bottom {
+  display: contents;
+}
+
+.center {
+  grid-area: center;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 0;
+  padding: 16px 0;
+  overflow-y: auto;
+  pointer-events: none;
+}
+.center > * {
+  pointer-events: auto;
 }
 
 /* 소방곰은 화면 왼쪽 아래 모서리에 붙임 */
 .guide {
+  grid-area: guide;
+  align-self: end;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -109,6 +132,8 @@
 }
 
 .actions {
+  grid-area: actions;
+  align-self: end;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -124,6 +149,15 @@
 
 /* 스마트폰 세로: 아래쪽을 하단 시트로 */
 @media (max-width: 767px) {
+  .overlay {
+    display: flex;
+    flex-direction: column;
+  }
+  .center {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 0 calc(12px + var(--radius-lg));
+  }
   /* 배경(VR)은 시트 위까지만. 둥근 모서리만큼 살짝 겹침 */
   .background {
     bottom: calc(var(--sheet-h, 0px) - var(--radius-lg));
@@ -140,10 +174,11 @@
 
   .bottom {
     position: relative;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
-    margin: 0 calc(-1 * var(--space-page)) calc(-1 * var(--space-page));
+    margin: auto calc(-1 * var(--space-page)) calc(-1 * var(--space-page));
     padding: 20px var(--space-page);
     padding-bottom: max(20px, env(safe-area-inset-bottom));
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -176,6 +211,7 @@
     width: 104px;
   }
   .actions {
+    align-self: stretch;
     flex-wrap: nowrap;
   }
   .actions > * {
