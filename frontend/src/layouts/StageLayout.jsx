@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { SpeechBubble } from "../components";
 import styles from "./StageLayout.module.css";
 
@@ -20,8 +21,23 @@ export default function StageLayout({
   actions,
   children,
 }) {
+  const stageRef = useRef(null);
+  const bottomRef = useRef(null);
+
+  // 하단 시트 높이를 CSS 변수로 넘김 → 모바일에서 VR이 시트 뒤로 숨지 않게
+  useEffect(() => {
+    const stage = stageRef.current;
+    const bottom = bottomRef.current;
+    if (!stage || !bottom) return;
+    const ro = new ResizeObserver(() => {
+      stage.style.setProperty("--sheet-h", `${bottom.offsetHeight}px`);
+    });
+    ro.observe(bottom);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <div className={styles.stage}>
+    <div ref={stageRef} className={styles.stage}>
       <div className={styles.background}>{background}</div>
       <div className={styles.scrim} aria-hidden="true" />
 
@@ -39,7 +55,7 @@ export default function StageLayout({
           {profile && <div className={styles.profile}>{profile}</div>}
         </header>
 
-        <div className={styles.bottom}>
+        <div ref={bottomRef} className={styles.bottom}>
           <div className={styles.guide}>
             {message && (
               <SpeechBubble className={styles.bubble} tail="bottom-left">

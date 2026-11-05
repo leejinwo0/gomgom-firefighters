@@ -12,6 +12,7 @@ export default function UiPreview() {
         <h1 style={{ margin: 0, fontSize: "var(--fs-hero)" }}>UI 미리보기</h1>
         <Link to="/ui/stage">시나리오 레이아웃 →</Link>
         <Link to="/ui/split">메인 레이아웃 →</Link>
+        <Link to="/ui/viewer">360° 뷰어 →</Link>
       </header>
 
       <Section title="Button">

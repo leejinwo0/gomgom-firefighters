@@ -124,6 +124,10 @@
 
 /* 스마트폰 세로: 아래쪽을 하단 시트로 */
 @media (max-width: 767px) {
+  /* 배경(VR)은 시트 위까지만. 둥근 모서리만큼 살짝 겹침 */
+  .background {
+    bottom: calc(var(--sheet-h, 0px) - var(--radius-lg));
+  }
   .scrim {
     height: 140px;
   }
