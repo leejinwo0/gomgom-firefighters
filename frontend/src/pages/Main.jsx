@@ -3,6 +3,7 @@ import { Button, Card, ProfileChip, Tag } from "../components";
 import { TRAININGS } from "../data/trainings";
 import { SplitLayout } from "../layouts";
 import { logout } from "../lib/auth";
+import { getHouse } from "../lib/house";
 import { isCompleted } from "../lib/progress";
 import styles from "./Pages.module.css";
 
@@ -10,6 +11,7 @@ import styles from "./Pages.module.css";
 export default function Main() {
   const navigate = useNavigate();
   const outletDone = isCompleted("outlet");
+  const houseDone = Boolean(getHouse().completed);
 
   const missions = [
     { no: "01", title: "거실 콘센트 화재 대피 훈련하기", done: outletDone, active: !outletDone },
@@ -78,11 +80,15 @@ export default function Main() {
       <Card className={styles.houseCta}>
         <img src="/images/곰/촬영소방곰.png" alt="" />
         <div>
-          <strong>우리 집으로 훈련하고 싶다면?</strong>
-          <p>집 안을 영상으로 찍어 올리면 우리 집 360° 화면으로 훈련할 수 있어요.</p>
+          <strong>{houseDone ? "우리 집 등록을 마쳤어요!" : "우리 집으로 훈련하고 싶다면?"}</strong>
+          <p>
+            {houseDone
+              ? "119 신고 연습에서 등록한 우리 집 주소로 말하기 연습을 해요."
+              : "집 안을 영상으로 찍어 올리면 우리 집 360° 화면으로 훈련할 수 있어요."}
+          </p>
         </div>
-        <Button variant="ghost" onClick={() => navigate("/onboarding")}>
-          우리 집 등록하기 →
+        <Button variant="ghost" onClick={() => navigate(houseDone ? "/house/address" : "/onboarding")}>
+          {houseDone ? "우리 집 정보 수정하기 →" : "우리 집 등록하기 →"}
         </Button>
       </Card>
     </SplitLayout>

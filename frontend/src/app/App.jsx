@@ -1,7 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ScenarioRoute from "../features/scenario/ScenarioPage";
 import Generating from "../pages/Generating";
-import HousePlaceholder from "../pages/HousePlaceholder";
+import HouseAddress from "../pages/house/HouseAddress";
+import HouseFloorplan from "../pages/house/HouseFloorplan";
+import HouseHazards from "../pages/house/HouseHazards";
+import HousePreview from "../pages/house/HousePreview";
+import HouseScan from "../pages/house/HouseScan";
 import Landing from "../pages/Landing";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
@@ -25,7 +29,12 @@ export default function App() {
 
         <Route path="/main" element={auth(<Main />)} />
         <Route path="/onboarding" element={auth(<Onboarding />)} />
-        <Route path="/house" element={auth(<HousePlaceholder />)} />
+        <Route path="/house" element={<Navigate to="/house/address" replace />} />
+        <Route path="/house/address" element={auth(<HouseAddress />)} />
+        <Route path="/house/floorplan" element={auth(<HouseFloorplan />)} />
+        <Route path="/house/scan" element={auth(<HouseScan />)} />
+        <Route path="/house/hazards" element={auth(<HouseHazards />)} />
+        <Route path="/house/preview/:roomKey" element={auth(<HousePreview />)} />
         <Route path="/generating" element={auth(<Generating />)} />
         <Route path="/training/:scenarioId/:stepId?" element={<ScenarioRoute />} />
 

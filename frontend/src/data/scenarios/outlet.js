@@ -29,6 +29,7 @@ const scenario = {
   },
   // 신고 연습 카드에 보여줄 화재 정보
   report: { location: "거실", type: "콘센트" },
+  sampleAddress: "곰곰시 안전구 소방동 곰곰아파트 1동 202호",
   start: "intro",
   stages: {
     1: "어디서 불이 났는지 알아볼까?",
@@ -221,8 +222,8 @@ const scenario = {
       background: BACKGROUNDS.outlet,
       character: CHARACTERS.thumbsUp,
       message: "잘했어! 소방관들이 도와주려면 우리집의 주소를 알려줘야 해. 같이 읽어볼까?",
-      // 데모용 가상 주소
-      report: { readAloud: ["거실 콘센트에서 불이 났어요!", "저희 집 주소는 곰곰시 안전구 소방동 곰곰아파트 1동 202호예요!"] },
+      // {address}: 우리 집 등록에서 입력한 주소 (없으면 sampleAddress)
+      report: { readAloud: ["거실 콘센트에서 불이 났어요!", "저희 집 주소는 {address}예요!"] },
       back: { label: "이전", to: "report-read" },
       next: { label: "다음 →", to: "complete" },
     },

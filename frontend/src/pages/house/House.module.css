@@ -1,0 +1,165 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 640px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.muted {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: var(--fs-caption);
+}
+
+/* 전개도 도구 */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tool {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--tool);
+  color: var(--color-ink);
+  font-weight: 700;
+}
+.toolOn {
+  border-color: var(--color-ink);
+}
+.gridActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.gridActions > span {
+  margin-right: auto;
+}
+
+/* 방 목록 */
+.roomList {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.roomCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+.roomName {
+  font-size: var(--fs-body);
+}
+.roomInput {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 16px;
+}
+.roomInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+.roomActions {
+  display: flex;
+  gap: 8px;
+}
+
+/* 문 연결·화재 요인 */
+.section {
+  display: grid;
+  gap: 12px;
+}
+.sectionTitle {
+  margin: 0;
+  font-size: var(--fs-body);
+}
+.doorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.door {
+  display: grid;
+  gap: 8px;
+}
+.door img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+.doorSelect {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font: inherit;
+  font-size: 15px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.chipOn {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, white);
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 767px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .roomCard {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .roomState {
+    grid-column: 2;
+  }
+  .roomActions {
+    grid-column: 1 / -1;
+  }
+  .roomActions > * {
+    flex: 1;
+  }
+  .doorGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

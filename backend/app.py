@@ -26,6 +26,46 @@ PIPELINE_PATH = os.path.join(BACKEND_DIR, "run_pipeline.py")
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+# 학습 모델(best_250723.pt)의 클래스 순서
+CLASS_NAMES = ["door", "powersocket", "gasstove", "fireextinguisher", "microwave", "powerstrip", "electricfan"]
+
+
+def read_labels_360(room_dir):
+    """YOLO 결과(등장방형 이미지 기준 정규화 좌표)를 360° 뷰어용 각도로 변환
+    x_c,y_c,w,h (0~1) → yaw,pitch,w,h (도). 프론트 RoomViewer의 라벨 형식과 동일"""
+    path = os.path.join(room_dir, "yolo_output", "labels", "result_equi.txt")
+    labels = []
+    if not os.path.isfile(path):
+        return labels
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            parts = line.split()
+            if len(parts) < 5:
+                continue
+            cls = int(float(parts[0]))
+            x, y, w, h = map(float, parts[1:5])
+            labels.append({
+                "cls": cls,
+                "name": CLASS_NAMES[cls] if cls < len(CLASS_NAMES) else str(cls),
+                "yaw": round((x - 0.5) * 360, 3),
+                "pitch": round((0.5 - y) * 180, 3),
+                "w": round(w * 360, 3),
+                "h": round(h * 180, 3),
+            })
+    return labels
+
+
+def list_doors(room_dir, session_id, room_type):
+    """문으로 탐지되어 잘라낸 이미지 목록(URL)"""
+    door_dir = os.path.join(room_dir, "doors")
+    if not os.path.isdir(door_dir):
+        return []
+    files = sorted(
+        (f for f in os.listdir(door_dir) if f.endswith(".jpg")),
+        key=lambda f: int("".join(c for c in f if c.isdigit()) or 0),
+    )
+    return [f"/uploads/{session_id}/{room_type}/doors/{f}" for f in files]
+
 app = Flask(__name__)
 
 # 허용할 프론트엔드 주소 (쉼표로 구분). 지정하지 않으면 전체 허용
@@ -67,6 +107,7 @@ def upload_and_process():
             PIPELINE_FRAME_DIR=os.path.join(room_dir, "frames"),
             PIPELINE_STITCH_RESULT=os.path.join(room_dir, "result_image.jpg"),
             PIPELINE_EQUI_RESULT=os.path.join(room_dir, "result_equi.jpg"),
+            PIPELINE_SESSION_DIR=room_dir,
             YOLO_MODEL_PATH=MODEL_PATH,
             YOLO_OUTPUT_DIR=os.path.join(room_dir, "yolo_output"),
             FRAME_INTERVAL=os.environ.get("FRAME_INTERVAL", "30"),
@@ -88,6 +129,8 @@ def upload_and_process():
             room=room_type,
             filename=filename,
             panorama=f"/uploads/{session_id}/{room_type}/result_equi.jpg",
+            labels=read_labels_360(room_dir),
+            doors=list_doors(room_dir, session_id, room_type),
         )
 
     except subprocess.CalledProcessError as e:

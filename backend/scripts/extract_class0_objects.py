@@ -87,7 +87,8 @@ def crop_and_save_objects_with_reverse_transform(image_path, class0_objects, out
             print(f"[WARNING] 잘못된 바운딩 박스: {ox1},{oy1},{ox2},{oy2}")
 
 def move_images_to_session_dir(output_dir, session_dir, session_id):
-    target_dir = os.path.join("frontend", "public", "images", "door_room", session_id)
+    # 프론트엔드 폴더가 아니라 방 결과 폴더(room_dir/doors)에 저장 → /uploads 경로로 제공
+    target_dir = os.path.join(session_dir, "doors")
 
     # ✅ 기존 파일 삭제
     if os.path.exists(target_dir):
@@ -137,7 +138,7 @@ def run_object_extraction(session_dir):
         "success": True,
         "message": f"{len(moved)}개 객체 저장 완료",
         "files": moved,
-        "output_path": os.path.join("frontend", "public", "images", "door_room", session_id)
+        "output_path": os.path.join(session_dir, "doors")
     }
 
 if __name__ == "__main__":

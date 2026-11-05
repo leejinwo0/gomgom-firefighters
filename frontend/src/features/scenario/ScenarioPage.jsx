@@ -4,6 +4,7 @@ import { Button, Modal, ProfileChip, RoomViewer } from "../../components";
 import { ROOMS } from "../../data/rooms";
 import { getScenario } from "../../data/scenarios";
 import { StageLayout } from "../../layouts";
+import { getHouse } from "../../lib/house";
 import { completeScenario, startScenario } from "../../lib/progress";
 import ChoicePanel from "./ChoicePanel";
 import CompletePanel from "./CompletePanel";
@@ -77,7 +78,11 @@ function ScenarioStep({ scenario, stepId }) {
   let center = null;
   if (step.complete) center = <CompletePanel scenario={scenario} result={result} />;
   else if (step.choice) center = <ChoicePanel choice={step.choice} selected={selected} onSelect={handleSelect} />;
-  else if (step.report) center = <ReportPanel info={scenario.report} readAloud={step.report.readAloud} />;
+  else if (step.report) {
+    const address = getHouse().address || scenario.sampleAddress;
+    const lines = step.report.readAloud.map((line) => line.replace("{address}", address));
+    center = <ReportPanel info={scenario.report} readAloud={lines} />;
+  }
   else if (step.figure) center = <img className={styles.figure} src={step.figure} alt="" />;
 
   return (

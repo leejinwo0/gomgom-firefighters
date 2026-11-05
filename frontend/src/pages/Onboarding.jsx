@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components";
 import { CenterLayout } from "../layouts";
+import { HOUSE_STEPS } from "../layouts/HouseLayout";
 import styles from "./Pages.module.css";
-
-export const HOUSE_STEPS = ["집 주소 입력하기", "집 전개도 등록하기", "집 공간 스캔하기", "화재 요인 등록하기"];
 
 // 원본 Loading1: 우리 집 등록 4단계 안내
 export default function Onboarding() {
@@ -32,7 +31,7 @@ export default function Onboarding() {
         </div>
       </div>
       <ol className={styles.stepList}>
-        {HOUSE_STEPS.map((label, i) => (
+        {HOUSE_STEPS.map(({ label }, i) => (
           <li key={label}>
             <span className={styles.stepNo}>{i + 1}</span>
             {label}

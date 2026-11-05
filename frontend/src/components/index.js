@@ -6,3 +6,4 @@ export { default as SpeechBubble } from "./SpeechBubble/SpeechBubble";
 export { default as Modal } from "./Modal/Modal";
 export { default as RoomViewer } from "./RoomViewer/RoomViewer";
 export { default as Field } from "./Field/Field";
+export { default as FloorplanGrid } from "./FloorplanGrid/FloorplanGrid";
