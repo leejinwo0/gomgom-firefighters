@@ -111,6 +111,8 @@
 .guide {
   grid-area: guide;
   align-self: end;
+  /* 말풍선이 길어도 가운데 영역을 밀어내지 않도록 폭 제한 */
+  max-width: calc(min(460px, 40vw) + var(--space-page));
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -188,6 +190,7 @@
     pointer-events: auto;
   }
   .guide {
+    max-width: none;
     margin: 0;
     padding-right: 88px; /* 소방곰 자리 */
   }
