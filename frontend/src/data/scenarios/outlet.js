@@ -24,8 +24,8 @@ const scenario = {
   level: "하",
   minutes: 3,
   badge: {
-    earned: "/images/뱃지/콘센트뱃지획득.png",
-    locked: "/images/뱃지/콘센트뱃지미획득.png",
+    earned: "/images/뱃지/콘센트뱃지획득.webp",
+    locked: "/images/뱃지/콘센트뱃지미획득.webp",
   },
   // 신고 연습 카드에 보여줄 화재 정보
   report: { location: "거실", type: "콘센트" },

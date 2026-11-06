@@ -226,13 +226,34 @@
 .training > button {
   margin-top: auto;
 }
-.trainingLocked .trainingBadge {
-  opacity: 0.6;
+.trainingCover {
+  position: relative;
+  margin: calc(-1 * clamp(16px, 2vw, 24px)) calc(-1 * clamp(16px, 2vw, 24px)) 8px;
+}
+.trainingCover > img:first-child {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.trainingLocked .trainingCover > img:first-child {
+  filter: grayscale(0.6);
+  opacity: 0.8;
 }
 .trainingBadge {
-  width: 96px;
-  height: 96px;
+  position: absolute;
+  left: 12px;
+  bottom: -28px;
+  width: 72px;
+  height: 72px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
   object-fit: contain;
+}
+.trainingCover + .trainingTitle {
+  margin-top: 24px;
 }
 .trainingTitle {
   font-size: var(--fs-body);
@@ -284,8 +305,9 @@
     gap: 10px;
   }
   .trainingBadge {
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
+    bottom: -22px;
   }
   .houseCta {
     flex-wrap: wrap;

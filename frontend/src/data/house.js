@@ -35,7 +35,7 @@ export const SAMPLE_ROOM_MAP = (() => {
 export const SAMPLE_ROOM_ORDER = ["livingRoom", "mainRoom", "kitchen", "hamzzyRoom", "entrance", "entranceOpen"];
 
 // 데모 모드: 거실에서 인식된 문 (해커톤 당시 실제 탐지 결과에서 발췌)
-export const SAMPLE_DOORS = [1, 2, 3, 4].map((i) => `/images/sample-doors/door${i}.jpg`);
+export const SAMPLE_DOORS = [1, 2, 3, 4].map((i) => `/images/sample-doors/door${i}.webp`);
 
 // 탐지 모델 클래스 → 화재 요인 이름 (문은 제외)
 export const HAZARDS = [

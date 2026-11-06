@@ -14,7 +14,7 @@ export const HOUSE_STEPS = [
  * 데스크톱·태블릿: 왼쪽 안내(소방곰 + 4단계 진행 상태) / 오른쪽 입력
  * 스마트폰: 위쪽에 진행 막대만, 버튼은 아래 고정
  */
-export default function HouseLayout({ step, title, desc, guide, bear = "/images/곰/촬영소방곰.png", footer, children }) {
+export default function HouseLayout({ step, title, desc, guide, bear = "/images/곰/촬영소방곰.webp", footer, children }) {
   return (
     <div className={styles.page}>
       <aside className={styles.aside}>

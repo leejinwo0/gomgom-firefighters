@@ -25,7 +25,7 @@ export default function HouseAddress() {
   return (
     <HouseLayout
       step={1}
-      bear="/images/곰/인사소방곰.png"
+      bear="/images/곰/인사소방곰.webp"
       title="집 정보를 입력해주세요"
       desc="입력한 주소는 119 신고 연습에서 '우리 집 주소 말하기'에 사용돼요."
       footer={

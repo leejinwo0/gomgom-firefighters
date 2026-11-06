@@ -18,7 +18,7 @@ export default function Landing() {
     <main className={styles.landing}>
       <div className={styles.bears}>
         {BEARS.map((name) => (
-          <img key={name} src={`/images/곰/${name}.png`} alt="" />
+          <img key={name} src={`/images/곰/${name}.webp`} alt="" />
         ))}
       </div>
       <div className={styles.landingText}>

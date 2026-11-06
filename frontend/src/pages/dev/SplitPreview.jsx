@@ -24,7 +24,7 @@ export default function SplitPreview() {
           <h1 style={{ margin: 0, fontSize: "var(--fs-title)", lineHeight: 1.35 }}>
             불이 나면 어떻게 해야 할까? 지금부터 소방곰과 함께 훈련하며 알아보자!
           </h1>
-          <img src="/images/곰/인사소방곰.png" alt="" style={{ width: "min(240px, 60%)", alignSelf: "center" }} />
+          <img src="/images/곰/인사소방곰.webp" alt="" style={{ width: "min(240px, 60%)", alignSelf: "center" }} />
           <div style={{ display: "grid", gap: 8 }}>
             <strong>오늘의 미션</strong>
             {missions.map((m) => (
@@ -52,7 +52,7 @@ export default function SplitPreview() {
       >
         {trainings.map((t) => (
           <Card key={t.badge} style={{ display: "grid", gap: 12 }}>
-            <img src={`/images/뱃지/${t.badge}.png`} alt="" style={{ width: 96, height: 96, objectFit: "contain" }} />
+            <img src={`/images/뱃지/${t.badge}.webp`} alt="" style={{ width: 96, height: 96, objectFit: "contain" }} />
             <strong style={{ fontSize: "var(--fs-body)" }}>{t.title}</strong>
             <div style={{ display: "flex", gap: 6 }}>
               <Tag>난이도 {t.level}</Tag>

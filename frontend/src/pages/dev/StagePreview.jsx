@@ -8,12 +8,12 @@ export default function StagePreview() {
 
   return (
     <StageLayout
-      background={<img src="/images/시나리오/배경/콘센트시나리오기본배경.png" alt="" />}
+      background={<img src="/images/시나리오/배경/콘센트시나리오기본배경.webp" alt="" />}
       title="거실 콘센트에서 불이 났어요!"
       step="1단계"
       stepText="어디서 불이 났는지 알아볼까?"
       profile={<ProfileChip collapsible />}
-      character="/images/시나리오/소방곰/404돋보기소방곰.png"
+      character="/images/시나리오/소방곰/404돋보기소방곰.webp"
       message="연기가 나는 곳을 눌러서 찾아봐!"
       actions={
         <>

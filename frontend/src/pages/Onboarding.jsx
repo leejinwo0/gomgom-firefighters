@@ -22,7 +22,7 @@ export default function Onboarding() {
       }
     >
       <div className={styles.onboarding}>
-        <img className={styles.onboardingBear} src="/images/곰/기다려소방곰.png" alt="" />
+        <img className={styles.onboardingBear} src="/images/곰/기다려소방곰.webp" alt="" />
         <div>
           <h1 className={styles.formTitle}>우리 집에 대해 먼저 알려주세요!</h1>
           <p className={styles.formDesc}>

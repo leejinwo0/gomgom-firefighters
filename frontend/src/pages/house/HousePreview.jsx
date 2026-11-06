@@ -32,7 +32,7 @@ export default function HousePreview() {
       title="VR 미리보기 체험"
       step="미리보기"
       stepText={`${name} 360° 화면`}
-      character="/images/시나리오/소방곰/404돋보기소방곰.png"
+      character="/images/시나리오/소방곰/404돋보기소방곰.webp"
       message={`${name} 화면을 드래그해서 둘러보세요!`}
       actions={
         <Button size="lg" onClick={() => navigate("/house/scan")}>

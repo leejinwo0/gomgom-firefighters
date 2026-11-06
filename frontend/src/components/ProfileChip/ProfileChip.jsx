@@ -4,7 +4,7 @@ import styles from "./ProfileChip.module.css";
 export default function ProfileChip({
   name = getDisplayName(),
   mode = "초보 소방관 모드",
-  avatar = "/images/시나리오/객체/프로필사진.png",
+  avatar = "/images/시나리오/객체/프로필사진.webp",
   compact = false,
   collapsible = false, // 스마트폰에서는 사진만 남김
 }) {

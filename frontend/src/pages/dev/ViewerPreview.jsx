@@ -18,7 +18,7 @@ export default function ViewerPreview() {
       step="테스트"
       stepText="주황 점이 있는 곳을 눌러보세요"
       profile={<ProfileChip collapsible />}
-      character="/images/시나리오/소방곰/404돋보기소방곰.png"
+      character="/images/시나리오/소방곰/404돋보기소방곰.webp"
       message="어디서 불이 났는지 찾아봐!"
       actions={
         <Button size="lg" onClick={() => setKey(keys[(keys.indexOf(key) + 1) % keys.length])}>

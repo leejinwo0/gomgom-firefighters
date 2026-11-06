@@ -30,7 +30,7 @@ export default function Main() {
         <>
           <span className={styles.eyebrow}>화재 대피 훈련</span>
           <h1 className={styles.asideTitle}>불이 나면 어떻게 해야 할까? 지금부터 소방곰과 함께 훈련하며 알아보자!</h1>
-          <img className={styles.asideBear} src="/images/곰/인사소방곰.png" alt="" />
+          <img className={styles.asideBear} src="/images/곰/인사소방곰.webp" alt="" />
           <section className={styles.missions}>
             <h2>오늘의 미션</h2>
             {missions.map((m) => (
@@ -62,7 +62,10 @@ export default function Main() {
           const ready = Boolean(t.scenarioId);
           return (
             <Card key={t.id} className={`${styles.training} ${ready ? "" : styles.trainingLocked}`}>
-              <img className={styles.trainingBadge} src={done ? t.badge.earned : t.badge.locked} alt="" />
+              <div className={styles.trainingCover}>
+                <img src={t.cover} alt="" loading="lazy" />
+                <img className={styles.trainingBadge} src={done ? t.badge.earned : t.badge.locked} alt="" />
+              </div>
               <strong className={styles.trainingTitle}>{t.title}</strong>
               <div className={styles.tags}>
                 <Tag>난이도 {t.level}</Tag>
@@ -78,7 +81,7 @@ export default function Main() {
       </div>
 
       <Card className={styles.houseCta}>
-        <img src="/images/곰/촬영소방곰.png" alt="" />
+        <img src="/images/곰/촬영소방곰.webp" alt="" />
         <div>
           <strong>{houseDone ? "우리 집 등록을 마쳤어요!" : "우리 집으로 훈련하고 싶다면?"}</strong>
           <p>
